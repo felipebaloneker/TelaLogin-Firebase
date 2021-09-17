@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import './App.css';
-import fire from './firebase';
+import fire from './services/fire';
 
 export default () =>{
   const [user,setUser] = useState('');
@@ -10,6 +9,7 @@ export default () =>{
   const [passwordError,setPasswordError] = useState('');
   const [hasAccount,setHasAccount] = useState(false)
   
+  // Login com usuario existente
   const handleLogin = () =>{
     fire
     .auth()
@@ -28,10 +28,11 @@ export default () =>{
     });
   };
 
-  const handleSingup= () =>{
+  // Criando cadastro no banco
+  const handleSignup= () =>{
     fire
     .auth()
-    .singInWithEmailAndPassword(email, password)
+    .createUserWithEmailAndPassword(email, password)
     .catch((err)=>{
       switch(err.code){
         case "auth/email-already-in-use":
@@ -43,6 +44,22 @@ export default () =>{
           break;
       }
     })
+  }
+
+  const handleLogout = () =>{
+    fire.auth().signOut();
+  };
+
+  const authListener =() =>{
+    fire.auth().onAuthStateChanged((user)=>{
+      if(user){
+        setUser(user);
+      }
+      else{
+        setUser("");
+      }
+    });
+
   }
 
 
