@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import fire from './services/fire';
+import {Login} from './components/Login'
+
 
 export default () =>{
   const [user,setUser] = useState('');
@@ -9,8 +11,20 @@ export default () =>{
   const [passwordError,setPasswordError] = useState('');
   const [hasAccount,setHasAccount] = useState(false)
   
+  //
+  const clearLoginInputs = () =>{
+    setEmail('');
+    setPassword('');
+  }
+
+  const clearLoginErrors = () =>{
+    setEmailError('');
+    setPasswordError('');
+  }
+
   // Login com usuario existente
   const handleLogin = () =>{
+    clearLoginErrors();
     fire
     .auth()
     .singInWithEmailAndPassword(email, password)
@@ -28,8 +42,9 @@ export default () =>{
     });
   };
 
-  // Criando cadastro no banco
+  // Criando cadastro do Usuario no banco
   const handleSignup= () =>{
+    clearLoginErrors();
     fire
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -46,6 +61,7 @@ export default () =>{
     })
   }
 
+  // Logout do usuario no banco
   const handleLogout = () =>{
     fire.auth().signOut();
   };
@@ -53,6 +69,7 @@ export default () =>{
   const authListener =() =>{
     fire.auth().onAuthStateChanged((user)=>{
       if(user){
+        clearLoginInputs();
         setUser(user);
       }
       else{
@@ -61,11 +78,25 @@ export default () =>{
     });
 
   }
-
+  useEffect(()=>{
+    authListener();
+  },[]);
 
   return(
-    <>
-      Hello World!!
-    </>
+    <div className='App'>
+      <Login 
+      email={email} 
+      setEmail={setEmail}
+      password={password}
+      setPassword={setPassword}
+      handleLogin={handleLogin}
+      handleSingup={handleSignup}
+      hasAccount={hasAccount}
+      setHasAccount={setHasAccount}
+      emailError={emailError}
+      passwordError={passwordError}
+      />
+
+    </div>
   );
 }
