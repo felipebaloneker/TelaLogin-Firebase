@@ -3,11 +3,13 @@ import React from 'react';
 const Login =(props) =>{
     const {
         email,
+        setEmail,
         password,
         setPassword,
         handleLogin,
         handleSignup,
         hasAccount,
+        setHasAccount,
         emailError,
         passwordError,
         } = props;
@@ -16,7 +18,13 @@ const Login =(props) =>{
         <section className='login'>
             <div>
                 <label>Username</label>
-                <input type='text' autoFocus required value={}/>
+                <input 
+                    type='text' 
+                    autoFocus 
+                    required 
+                    value={email}
+                    onChange={(e)=> setEmail(e.target.value)}
+                    />
             </div>
         </section>    
     )

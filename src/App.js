@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import fire from './services/fire';
-import {Login} from './components/Login'
+import Login from './components/Login'
 
 
 export default () =>{
@@ -90,7 +90,7 @@ export default () =>{
       password={password}
       setPassword={setPassword}
       handleLogin={handleLogin}
-      handleSingup={handleSignup}
+      handleSignup={handleSignup}
       hasAccount={hasAccount}
       setHasAccount={setHasAccount}
       emailError={emailError}
