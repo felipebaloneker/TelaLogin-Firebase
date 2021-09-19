@@ -27,7 +27,7 @@ const App = () =>{
     clearLoginErrors();
     fire
     .auth()
-    .singInWithEmailAndPassword(email, password)
+    .signInWithEmailAndPassword(email, password)
     .catch((err)=>{
       switch(err.code){
         case "auth/invalid-email":

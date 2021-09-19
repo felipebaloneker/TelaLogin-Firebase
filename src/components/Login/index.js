@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './style.css'
 const Login =(props) =>{
     const {
         email,
@@ -16,7 +16,7 @@ const Login =(props) =>{
 
     return(
         <section className='login'>
-            <div>
+            <div className='logincontainer'>
                 <label>Username</label>
                 <input 
                     type='text' 
@@ -24,7 +24,31 @@ const Login =(props) =>{
                     required 
                     value={email}
                     onChange={(e)=> setEmail(e.target.value)}
-                    />
+                />
+                <p className='errorMsg'>{emailError}</p>
+
+                <label>Password</label>
+                <input 
+                    type='text' 
+                    required 
+                    value={password}
+                    onChange={(e)=> setPassword(e.target.value)}
+                />
+                <p className='errorMsg'>{passwordError}</p>
+                <div className='btnContainer'>
+                    {hasAccount ? (
+                        <>
+                            <button>SignIn</button>
+                            <p>Don`t have an account? <span onClick={() => setHasAccount(!hasAccount)}>SignUp</span></p>
+                        </>
+                    ): (
+                        <>
+                            <button>SignUp</button>
+                            <p>Have an account? <span onClick={() => setHasAccount(!hasAccount)}>SignIn</span></p>
+                        </>
+                    )}
+
+                </div>
             </div>
         </section>    
     )
