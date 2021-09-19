@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import fire from './services/fire';
 import Login from './components/Login'
-
+import Hero from './components/Hero'
+import './global.css'
 
 const App = () =>{
   const [user,setUser] = useState('');
@@ -33,6 +34,7 @@ const App = () =>{
         case "auth/invalid-email":
         case "auth/user-disabled":
         case "auth/user-not-found":
+        default:
           setEmailError(err.message);
           break;
         case "auth/wrong-password":
@@ -52,6 +54,7 @@ const App = () =>{
       switch(err.code){
         case "auth/email-already-in-use":
         case "auth/invalid-email":
+        default:
           setEmailError(err.message);
           break;
         case "auth/weak-password":
@@ -81,23 +84,29 @@ const App = () =>{
 
   useEffect(() => {
     authListener();
-  }, []);
+  },);
 
   return(
     <div className='App'>
-      <Login 
-      email={email} 
-      setEmail={setEmail}
-      password={password}
-      setPassword={setPassword}
-      handleLogin={handleLogin}
-      handleSignup={handleSignup}
-      hasAccount={hasAccount}
-      setHasAccount={setHasAccount}
-      emailError={emailError}
-      passwordError={passwordError}
-      />
-
+      {user ? (
+            <Hero
+            handleLogout={handleLogout}
+            />
+      ) : 
+      (
+            <Login 
+              email={email} 
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              handleLogin={handleLogin}
+              handleSignup={handleSignup}
+              hasAccount={hasAccount}
+              setHasAccount={setHasAccount}
+              emailError={emailError}
+              passwordError={passwordError}
+            />
+      )}
     </div>
   );
 }

@@ -4,6 +4,7 @@
     font-family: "Helvetica Neue",Helvetica,Arial;
     font-weight: 200;
     letter-spacing:.2rem;
+    color:#fff;
 }
 .login{
     display:flex;
@@ -31,6 +32,7 @@ label{
     color:#FCFEFF;
     font-size:1.3rem;
     font-weight: lighter;
+    margin:1rem;
 }
 input{
     border:0;
@@ -38,15 +40,18 @@ input{
     width:22vw;
     height:6vh;
     background:#0F2E3F;
-    margin:1rem;
 }
 .btnContainer p{
     color:#b8b8b8;
-    margin:2rem;
 }
 span{
     color:#37BFBF;
     cursor:pointer;
+}
+
+.errorMsg{
+    color:red;
+    font-size:1rem;
 }
 button{
     border:0;
@@ -56,6 +61,6 @@ button{
     color:#fff;
     font-size:1rem;
     font-weight: 500;
-    margin-top:.5rem;
+    margin:1.5rem;
     cursor:pointer;
 }

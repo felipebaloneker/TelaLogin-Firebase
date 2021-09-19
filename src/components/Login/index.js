@@ -1,5 +1,4 @@
 import React from 'react';
-import './style.css'
 const Login =(props) =>{
     const {
         email,
@@ -19,7 +18,7 @@ const Login =(props) =>{
             <div className='logincontainer'>
                 <label>Username</label>
                 <input 
-                    type='text' 
+                    type='email' 
                     autoFocus 
                     required 
                     value={email}
@@ -29,7 +28,7 @@ const Login =(props) =>{
 
                 <label>Password</label>
                 <input 
-                    type='text' 
+                    type='password' 
                     required 
                     value={password}
                     onChange={(e)=> setPassword(e.target.value)}
@@ -38,12 +37,12 @@ const Login =(props) =>{
                 <div className='btnContainer'>
                     {hasAccount ? (
                         <>
-                            <button>SignIn</button>
+                            <button onClick={handleLogin}>SignIn</button>
                             <p>Don`t have an account? <span onClick={() => setHasAccount(!hasAccount)}>SignUp</span></p>
                         </>
                     ): (
                         <>
-                            <button>SignUp</button>
+                            <button onClick={handleSignup}>SignUp</button>
                             <p>Have an account? <span onClick={() => setHasAccount(!hasAccount)}>SignIn</span></p>
                         </>
                     )}
