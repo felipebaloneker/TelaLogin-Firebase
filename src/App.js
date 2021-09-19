@@ -3,7 +3,7 @@ import fire from './services/fire';
 import Login from './components/Login'
 
 
-export default () =>{
+const App = () =>{
   const [user,setUser] = useState('');
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
@@ -66,7 +66,7 @@ export default () =>{
     fire.auth().signOut();
   };
 
-  const authListener =() =>{
+  const authListener = () =>{
     fire.auth().onAuthStateChanged((user)=>{
       if(user){
         clearLoginInputs();
@@ -78,9 +78,10 @@ export default () =>{
     });
 
   }
-  useEffect(()=>{
+
+  useEffect(() => {
     authListener();
-  },[]);
+  }, []);
 
   return(
     <div className='App'>
@@ -100,3 +101,4 @@ export default () =>{
     </div>
   );
 }
+export default App;
