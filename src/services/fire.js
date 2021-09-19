@@ -1,13 +1,13 @@
 import firebase from "firebase/compat/app";
 import 'firebase/compat/auth';
 const firebaseConfig = {
-  apiKey: "AIzaSyD5M76Y_R3dsIMv2fBbLdBmZCr3cNTHdwI",
-  authDomain: "telalogin-9ca38.firebaseapp.com",
-  databaseURL: "https://telalogin-9ca38-default-rtdb.firebaseio.com",
-  projectId: "telalogin-9ca38",
-  storageBucket: "telalogin-9ca38.appspot.com",
-  messagingSenderId: "996520196097",
-  appId: "1:996520196097:web:19a55819f39e15508da800"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATA_BASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGIN_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID
 };
 
 
